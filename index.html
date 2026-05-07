@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>KEM-OS</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230078d4'/%3E%3Cpath d='M14 14h16v16H14zM34 14h16v16H34zM14 34h16v16H14zM34 34h16v16H34z' fill='white'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-dark accent-blue">
+
+  <!-- Boot screen -->
+  <div id="boot" class="boot">
+    <div class="boot-logo"></div>
+    <div class="boot-spinner"></div>
+    <div class="boot-text">Starting KEM-OS…</div>
+  </div>
+
+  <!-- Lock screen -->
+  <div id="lock" class="lock hidden">
+    <div class="lock-time" id="lockTime">--:--</div>
+    <div class="lock-date" id="lockDate"></div>
+    <div class="lock-hint">Click anywhere or press Enter</div>
+  </div>
+
+  <!-- Desktop -->
+  <div id="desktop" class="desktop hidden">
+    <div id="wallpaper" class="wallpaper"></div>
+
+    <!-- Desktop icons -->
+    <div id="desktopIcons" class="desktop-icons"></div>
+
+    <!-- Window layer -->
+    <div id="windowLayer" class="window-layer"></div>
+
+    <!-- Context menu -->
+    <div id="contextMenu" class="context-menu hidden"></div>
+
+    <!-- Notification host -->
+    <div id="toastHost" class="toast-host"></div>
+
+    <!-- Taskbar -->
+    <div id="taskbar" class="taskbar">
+      <button id="startBtn" class="tb-btn start-btn" title="Start">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <rect x="2" y="2" width="9" height="9" fill="currentColor"/>
+          <rect x="13" y="2" width="9" height="9" fill="currentColor"/>
+          <rect x="2" y="13" width="9" height="9" fill="currentColor"/>
+          <rect x="13" y="13" width="9" height="9" fill="currentColor"/>
+        </svg>
+      </button>
+      <button id="searchBtn" class="tb-btn" title="Search">🔍</button>
+      <button id="taskViewBtn" class="tb-btn" title="Task View">▦</button>
+      <div id="taskbarApps" class="taskbar-apps"></div>
+      <div class="taskbar-spacer"></div>
+      <div id="trayIcons" class="tray-icons">
+        <button class="tb-btn" id="trayProxy" title="Proxy">🛡</button>
+        <button class="tb-btn" id="trayVolume" title="Volume">🔊</button>
+        <button class="tb-btn" id="trayNet" title="Network">📶</button>
+      </div>
+      <button id="clockBtn" class="tb-btn clock-btn">
+        <span id="tbTime">--:--</span><br/>
+        <small id="tbDate"></small>
+      </button>
+      <button id="actionCenterBtn" class="tb-btn" title="Action Center">▢</button>
+      <button id="showDesktopBtn" class="tb-btn show-desktop" title="Show Desktop"></button>
+    </div>
+
+    <!-- Start menu -->
+    <div id="startMenu" class="start-menu hidden">
+      <div class="sm-search">
+        <input type="text" id="startSearch" placeholder="Search apps, settings, files…" />
+      </div>
+      <div class="sm-pinned" id="smPinned"></div>
+      <div class="sm-recommended">
+        <div class="sm-section-title">All apps</div>
+        <div class="sm-grid" id="smGrid"></div>
+      </div>
+      <div class="sm-footer">
+        <button id="smUser" class="sm-foot-btn">👤 User</button>
+        <button id="smSettings" class="sm-foot-btn">⚙ Settings</button>
+        <button id="smPower" class="sm-foot-btn">⏻ Power</button>
+      </div>
+    </div>
+
+    <!-- Action center -->
+    <div id="actionCenter" class="action-center hidden">
+      <div class="ac-quick" id="acQuick"></div>
+      <div class="ac-section">Brightness</div>
+      <input type="range" id="acBrightness" min="40" max="100" value="100" />
+      <div class="ac-section">Volume</div>
+      <input type="range" id="acVolume" min="0" max="100" value="80" />
+      <div class="ac-notifications" id="acNotifications">
+        <div class="ac-section">Notifications</div>
+        <div id="acNotifList" class="ac-notif-list"></div>
+      </div>
+    </div>
+
+    <!-- Power menu -->
+    <div id="powerMenu" class="power-menu hidden">
+      <button data-power="sleep">😴 Sleep</button>
+      <button data-power="lock">🔒 Lock</button>
+      <button data-power="restart">🔄 Restart</button>
+      <button data-power="shutdown">⏻ Shut down</button>
+    </div>
+  </div>
+
+  <!-- Ultraviolet service worker registration target page (hidden iframe host lives in Browser app) -->
+
+  <!-- Scripts -->
+  <script src="js/uv-config.js"></script>
+  <script src="js/registry.js"></script>
+  <script src="js/fs.js"></script>
+  <script src="js/wm.js"></script>
+  <script src="js/proxy.js"></script>
+  <script src="js/apps.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/os.js"></script>
+</body>
+</html>
